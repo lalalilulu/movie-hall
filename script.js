@@ -12,8 +12,6 @@ document.querySelector('.seatsBlock').addEventListener('click', ({target}) => {
         }
     }
 
-    console.log(selectedPlaces.sort());
-
     selectedPlaces.length > 0 ? renderOrderElementWithTickets(orderElement, stringifyArray(selectedPlaces.sort()))
     : renderOrderElementWithText(orderElement, 'Выберите места, чтобы забронировать билеты');
 
@@ -51,7 +49,11 @@ const renderOrderElementWithText = (orderElement, text) => {
 };
 
 const stringifyArray = (selectedPlaces) => {
-    return "bla-bla";
+    const result = [];
+    selectedPlaces.forEach(place => {
+        const rowPlace = place.split("-");
+        result.push(`${rowPlace[0]} ряд, ${rowPlace[1]} место`);
+    });
+
+    return result.join(";<br>");
 };
-
-
